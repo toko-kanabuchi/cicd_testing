@@ -1,6 +1,10 @@
 name: Switching Environment
-.settings: &settings
-jobs:
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+job:
   example:
     runs-on: ubuntu-latest
     steps:
@@ -8,25 +12,21 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      - name: running Python Script
+      - name: running Python Script Debug
+        if: ${{ github.ref_name != 'main' }}
         run: python python/sample_env.py
-        env:
-          FIRST_NAME: ${FIRST_NAME}
-          LAST_NAME: ${LAST_NAME}
+        <<: *debug_variable
+      - name: running Python Script Prod
+        if: ${{ github.ref_name == 'main' }}
+        run: python python/sample_env.py
+        <<: *prod_variables
 
-debug_settings:
-  <<: *settings
-  on: workflow_dispatch
+.debug_variables: &debug_variables
   env:
     FIRST_NAME: "開発用"
     LAST_NAME: "環境変数"
 
-prod_settings:
-  <<: *settings
-  on:
-    push:
-      branches: 
-        - 'main'
+.prod_variables: &prod_variables
   env:
     FIRST_NAME: ${{ secrets.FIRST_NAME }}
     LAST_NAME: ${{ secrets.LAST_NAME }}
