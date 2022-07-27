@@ -22,6 +22,7 @@ jobs:
           LAST_NAME: "環境変数"
   prod_run:
     if: ${{ github.ref_name == 'main' }}
+    steps:
       - name: running Python Script Prod
         run: python python/sample_env.py
         env:
