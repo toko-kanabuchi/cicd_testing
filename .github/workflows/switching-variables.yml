@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 jobs:
   setup:
     runs-on: ubuntu-latest
@@ -10,7 +11,7 @@ jobs:
       - run: echo ${{ github.ref_name }}
   debug_run:
     needs: setup
-    if: ${{ github.ref_name != 'main' }}
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
