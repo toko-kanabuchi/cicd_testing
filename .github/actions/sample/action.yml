@@ -1,0 +1,10 @@
+jobs: # jobのグループ
+  check-bats-version: # job名
+    runs-on: ubuntu-latest # runnerの指定 個別に用意しなくてもgithubでホストされているやつで良さそう
+    steps: # jobの中での子タスクを指定
+      - uses: actions/checkout@v3 # uses: githubがあらかじめ用意してくれている動作を実行する/コードに対して処理を行う時には入れる
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm install -g bats # run: コマンドの実行
+      - run: bats -v

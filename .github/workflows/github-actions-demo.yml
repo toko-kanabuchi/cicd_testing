@@ -16,3 +16,9 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+  Call-Sample-Action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "calling defined action" # タスクに名前をつける
+        descriptinon: "自分で定義したActionを呼び出す" # ステップの説明
+        uses: ./.github/actions/sample
