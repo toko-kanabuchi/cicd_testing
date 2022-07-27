@@ -26,4 +26,4 @@ jobs:
       - id: calling-defined-action-with-input-variable 
         uses: ./.github/actions/sample
         with: 
-          valiable1: "ワークフローからの入力"
+          variable1: "ワークフローからの入力"

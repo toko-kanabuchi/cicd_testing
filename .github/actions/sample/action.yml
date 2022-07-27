@@ -1,7 +1,7 @@
 name: "Sample Action"
 description: "github-action-demoから呼び出すサンプルのAction"
 inputs:
-  valiable1:
+  variable1:
     description: "入力1"
     required: true
     default: "金渕"
