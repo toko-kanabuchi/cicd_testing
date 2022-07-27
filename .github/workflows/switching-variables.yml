@@ -12,6 +12,7 @@ jobs:
         with:
           python-version: '3.9'
   debug_run:
+    needs: setup
     if: ${{ github.ref_name != 'main' }}
     runs-on: ubuntu-latest
     steps:
@@ -21,7 +22,9 @@ jobs:
           FIRST_NAME: "開発用"
           LAST_NAME: "環境変数"
   prod_run:
+    needs: setup
     if: ${{ github.ref_name == 'main' }}
+    runs-on: ubuntu-latest
     steps:
       - name: running Python Script Prod
         run: python python/sample_env.py
