@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ github.ref_name }}
+      - run: echo ${{ github.event_name }}
   debug_run:
     needs: setup
     if: ${{ github.event_name == 'workflow_dispatch' }}
