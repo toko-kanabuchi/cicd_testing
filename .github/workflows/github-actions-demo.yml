@@ -19,5 +19,11 @@ jobs:
   Call-Sample-Action:
     runs-on: ubuntu-latest
     steps:
-      - name: "calling defined action" # タスクに名前をつける
+      - uses: actions/checkout@v3
+      - id: calling-defined-action # タスクにidをつける
         uses: ./.github/actions/sample
+      - run: echo random-number ${{ steps.calling-defined-action.outputs.ouput1 }}
+      - id: calling-defined-action-with-input-variable 
+        uses: ./.github/actions/sample
+        with: 
+          valiable1: "ワークフローからの入力"

@@ -1,11 +1,24 @@
-jobs: # jobのグループ
-description: "自分で定義したActionを呼び出す"
-  check-bats-version: # job名
-    runs-on: ubuntu-latest # runnerの指定 個別に用意しなくてもgithubでホストされているやつで良さそう
-    steps: # jobの中での子タスクを指定
-      - uses: actions/checkout@v3 # uses: githubがあらかじめ用意してくれている動作を実行する/コードに対して処理を行う時には入れる
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats # run: コマンドの実行
-      - run: bats -v
+name: "Sample Action"
+description: "github-action-demoから呼び出すサンプルのAction"
+inputs:
+  valiable1:
+    description: "入力1"
+    required: true
+    default: "金渕"
+outputs:
+  ouput1:
+    description: "出力1"
+    value: ${{ step.random-num-gen.outputs.num-output1 }}
+runs:
+  using: "composite"
+  steps:
+    - id: echo-input-value
+      description: "入力された値を出力する"
+      run: echo ${{ input.variable1 }}
+    - id: random-num-gen
+      description: "ランダム数値を生成してoutputとする"
+      run: echo "::set-output name=num-output1::$(echo $RANDOM)"
+    - id: run-shell-script
+      description: "リポジトリ内のシェルスクリプトを実行する"
+      run: shellscripts/hello.sh
+      shell: bash # 実行shellを指定できる
