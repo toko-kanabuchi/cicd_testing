@@ -11,8 +11,8 @@ jobs:
       - name: running Python Script
         run: python python/sample_env.py
         env:
-          FIRST_NAME: "金渕"
-          LAST_NAME: "桐呼"
+          FIRST_NAME: "直接"
+          LAST_NAME: "渡した"
       - name: running Python Script with Secret
         run: python python/sample_env.py
         env:
