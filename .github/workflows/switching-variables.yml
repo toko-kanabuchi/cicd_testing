@@ -1,4 +1,4 @@
-name: Switching Environment
+name: Switching
 on:
   push:
     branches:
@@ -14,18 +14,22 @@ jobs:
       - name: running Python Script Debug
         if: ${{ github.ref_name != 'main' }}
         run: python python/sample_env.py
-        <<: *debug_variables
+        env:
+          FIRST_NAME: "開発用"
+          LAST_NAME: "環境変数"
       - name: running Python Script Prod
         if: ${{ github.ref_name == 'main' }}
         run: python python/sample_env.py
-        <<: *prod_variables
+        env:
+          FIRST_NAME: ${{ secrets.FIRST_NAME }}
+          LAST_NAME: ${{ secrets.LAST_NAME }}
 
-.debug_variables: &debug_variables
-  env:
-    FIRST_NAME: "開発用"
-    LAST_NAME: "環境変数"
+# .debug_variables: &debug_variables
+#   env:
+#     FIRST_NAME: "開発用"
+#     LAST_NAME: "環境変数"
 
-.prod_variables: &prod_variables
-  env:
-    FIRST_NAME: ${{ secrets.FIRST_NAME }}
-    LAST_NAME: ${{ secrets.LAST_NAME }}
+# .prod_variables: &prod_variables
+#   env:
+#     FIRST_NAME: ${{ secrets.FIRST_NAME }}
+#     LAST_NAME: ${{ secrets.LAST_NAME }}
