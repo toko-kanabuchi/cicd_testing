@@ -31,7 +31,7 @@ jobs:
           LAST_NAME: "環境変数"
   prod_run:
     needs: setup
-    if: ${{ github.ref_name == 'main' }}
+    if: ${{ github.ref_name == 'main' && github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
