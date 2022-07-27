@@ -1,5 +1,5 @@
 name: learn-github-actions # Actionsタブに表示されるwfの名前
-# on: [push] # wfのトリガー/ この場合pushかPRのmergeでトリガーされる
+on: workflow_dispatch # wfのトリガー/ この場合pushかPRのmergeでトリガーされる
 jobs: # jobのグループ
   check-bats-version: # job名
     runs-on: ubuntu-latest # runnerの指定 個別に用意しなくてもgithubでホストされているやつで良さそう
