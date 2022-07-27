@@ -4,6 +4,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      debug_run:
+        type: choice
+        options:
+          - Run Debug
 jobs:
   setup:
     runs-on: ubuntu-latest
