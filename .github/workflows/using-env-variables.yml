@@ -9,4 +9,7 @@ jobs:
         with:
           python-version: '3.9'
       - name: running Python Script
-        run: python python/sample1.py
+        run: python python/sample_env.py
+        env:
+          FIRST_NAME: "金渕"
+          LAST_NAME: "桐呼"
