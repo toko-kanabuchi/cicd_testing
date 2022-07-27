@@ -1,4 +1,5 @@
 jobs: # jobのグループ
+description: "自分で定義したActionを呼び出す"
   check-bats-version: # job名
     runs-on: ubuntu-latest # runnerの指定 個別に用意しなくてもgithubでホストされているやつで良さそう
     steps: # jobの中での子タスクを指定
