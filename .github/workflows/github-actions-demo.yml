@@ -20,5 +20,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "calling defined action" # タスクに名前をつける
-        descriptinon: "自分で定義したActionを呼び出す" # ステップの説明
+        description: "自分で定義したActionを呼び出す" # ステップの説明
         uses: ./.github/actions/sample
