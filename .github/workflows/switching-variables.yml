@@ -7,15 +7,16 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
+      - run: echo ${{ github.ref_name }}
   debug_run:
     needs: setup
     if: ${{ github.ref_name != 'main' }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
       - name: running Python Script Debug
         run: python python/sample_env.py
         env:
@@ -26,6 +27,10 @@ jobs:
     if: ${{ github.ref_name == 'main' }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
       - name: running Python Script Prod
         run: python python/sample_env.py
         env:
