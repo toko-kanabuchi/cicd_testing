@@ -13,7 +13,7 @@ runs:
   using: "composite"
   steps:
     - id: echo-input-value
-      run: echo ${{ inputs.variable1 }}
+      run: echo ${{ inputs.valiable1 }}
       shell: bash
     - id: random-num-gen
       run: echo "::set-output name=num-output1::$(echo $RANDOM)"
