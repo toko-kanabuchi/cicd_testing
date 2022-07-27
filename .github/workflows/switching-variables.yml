@@ -4,32 +4,26 @@ on:
     branches:
       - main
 jobs:
-  example:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
+  debug_run:
+    if: ${{ github.ref_name != 'main' }}
+    runs-on: ubuntu-latest
+    steps:
       - name: running Python Script Debug
-        if: ${{ github.ref_name != 'main' }}
         run: python python/sample_env.py
         env:
           FIRST_NAME: "開発用"
           LAST_NAME: "環境変数"
+  prod_run:
+    if: ${{ github.ref_name == 'main' }}
       - name: running Python Script Prod
-        if: ${{ github.ref_name == 'main' }}
         run: python python/sample_env.py
         env:
           FIRST_NAME: ${{ secrets.FIRST_NAME }}
           LAST_NAME: ${{ secrets.LAST_NAME }}
-
-# .debug_variables: &debug_variables
-#   env:
-#     FIRST_NAME: "開発用"
-#     LAST_NAME: "環境変数"
-
-# .prod_variables: &prod_variables
-#   env:
-#     FIRST_NAME: ${{ secrets.FIRST_NAME }}
-#     LAST_NAME: ${{ secrets.LAST_NAME }}
