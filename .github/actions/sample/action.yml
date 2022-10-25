@@ -16,7 +16,7 @@ runs:
       run: echo ${{ inputs.valiable1 }}
       shell: bash
     - id: random-num-gen
-      run: echo "::set-output name=num-output1::$(echo $RANDOM)"
+      run: echo "num-output1=$(echo $RANDOM)" >> $GITHUB_OUTPUT
       shell: bash
     - id: run-shell-script
       run: shellscripts/hello.sh
